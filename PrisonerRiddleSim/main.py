@@ -29,14 +29,13 @@ async def sim() -> bool:
             if tries == 49:
                 found.append(False)
             tries += 1
+    global passed
     if len(found) < 99:
         pass
     elif False not in found:
-        print("EVERYONE PASSED!!!")
         passed += 1
         passedArr.append(passed)
     else:
-        print(f"FAILED. {found.count(True)} fround their numbers")
         passedArr.append(passed)
 
 if __name__ == "__main__":
@@ -44,6 +43,5 @@ if __name__ == "__main__":
     num = int(numStr)
     for i in range(num):
         asyncio.run(sim())
-    print(len([i for i in range(1, num)]))
-    print(len(passedArr))
-    plt.plot([i for i in range(1, num)], passedArr)
+    plt.plot(passedArr)
+    plt.show()
